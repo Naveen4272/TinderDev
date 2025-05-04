@@ -1,21 +1,19 @@
 const express=require("express")
 
 const app=express();
+const {adminAuth}=require("./middlewares/auth")
+
+app.use("/",adminAuth)
 
 
-app.use("/user",(req,res,next)=>{
-  console.log("1st");
-  
-  next()
-},(req,res,next)=>{
-  console.log("2nd");
-  
-  next()
+app.get("/admin/getAllData",(req,res)=>{
+
+  res.send("all data send")
+ 
 })
-app.use("/user",(req,res,next)=>{
-  console.log("3rd");
 
-  
+app.delete("/admin/deleteUser",(req,res)=>{
+  res.send("user deleted")
 })
 app.listen(3000,()=>{
   console.log(" server listening to the port 3000...");
